@@ -133,7 +133,6 @@ tr:hover td {
   }
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   th,
   td {
@@ -143,3 +142,4 @@ tr:hover td {
     display: none;
   }
 }
+
