@@ -4,24 +4,18 @@ const API_URL = 'https://jsonplaceholder.typicode.com/users';
         const usersTable = document.getElementById('usersTable');
         const statusDiv = document.getElementById('status');
 
-        // 2. Función Principal Asíncrona (TU CÓDIGO FETCH)
         async function fetchUsers() {
             try {
-                // Realizar la petición
                 const response = await fetch(API_URL);
                 
-                // Verificar si la respuesta es correcta
                 if (!response.ok) {
                     throw new Error(`Error HTTP: ${response.status}`);
                 }
 
-                // Convertir a JSON
                 const users = await response.json();
 
-                // Renderizar datos
                 renderTable(users);
                 
-                // Actualizar UI
                 showTable();
                 statusDiv.innerHTML = "Sistema Online";
 
@@ -34,19 +28,14 @@ const API_URL = 'https://jsonplaceholder.typicode.com/users';
             }
         }
 
-        // 3. Función de Renderizado (ACTUALIZADA CON NUEVAS COLUMNAS)
         function renderTable(users) {
-            // Limpiar tabla por seguridad
             tableBody.innerHTML = '';
 
             users.forEach(user => {
-                // Crear fila
                 const row = document.createElement('tr');
 
-                // Extraer iniciales para el avatar visual
                 const initials = user.name.split(' ').map(n => n[0]).join('').substring(0,2);
 
-                // Construir el HTML de la fila
                 row.innerHTML = `
                     <td>
                         <div class="user-avatar">
@@ -61,12 +50,10 @@ const API_URL = 'https://jsonplaceholder.typicode.com/users';
                     <td>${user.address.city}</td>
                 `;
 
-                // Agregar al DOM
                 tableBody.appendChild(row);
             });
         }
 
-        // 4. Utilidad para mostrar la tabla
         function showTable() {
             loadingDiv.style.display = 'none';
             usersTable.style.display = 'table';
@@ -74,4 +61,5 @@ const API_URL = 'https://jsonplaceholder.typicode.com/users';
         }
 
         // 5. Iniciar
+
         document.addEventListener('DOMContentLoaded', fetchUsers);
